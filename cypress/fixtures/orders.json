@@ -1,0 +1,14 @@
+{
+  "valid": [
+    {
+      "email": "example@partner.com",
+      "number": "X01234"
+    }
+  ],
+  "invalid": [
+    {
+      "email": "ajdfv12",
+      "number": "X01234"
+    }
+  ]
+}
