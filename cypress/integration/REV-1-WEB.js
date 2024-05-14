@@ -63,7 +63,7 @@ describe('REV-1-WEB - Start return order with Order Number and Email', () => {
         })
       })
 
-      it.only("Then system displays the error message: 'Enter a valid e-mail'", () => {
+      it("Then system displays the error message: 'Enter a valid e-mail'", () => {
         cy.get(selectors.errorMessage)
           .contains('Enter a valid order number')
           .should('be.visible')
