@@ -5,10 +5,16 @@
       "number": "X01234"
     }
   ],
-  "invalid": [
+  "invalidEmail": [
     {
       "email": "ajdfv12",
       "number": "X01234"
+    }
+  ],
+  "invalidNumber": [
+    {
+      "email": "example@partner.com",
+      "number": "ABC1234509875"
     }
   ]
 }

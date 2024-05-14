@@ -32,21 +32,44 @@ describe('REV-1-WEB - Start return order with Order Number and Email', () => {
     context("When user types a valid order number and invalid email address", () => {
       beforeEach(() => {
         cy.get('@orders').then(orders => {
-          orders.invalid.forEach(order => {
+          orders.invalidEmail.forEach(order => {
             cy.get('@order').type(order.number)
             cy.get('@order').type(order.number)
             cy.get('@email').type(order.email)
             cy.get('@continue').click()
           })
         })
-
-        cy.get(selectors.errorMessage).as('error')
       })
 
-      it("Then system displays the error message: 'Enter a valid e-mail' ", () => {
-        cy.get('@error')
+      it("Then system displays the error message: 'Enter a valid e-mail'", () => {
+        cy.get(selectors.errorMessage)
           .contains('Enter a valid e-mail')
           .should('be.visible')
+
+        cy.location('pathname')
+          .should('eq', '/partner')
+      })
+    })
+
+    context("When user types an invalid order number and valid email address", () => {
+      beforeEach(() => {
+        cy.get('@orders').then(orders => {
+          orders.invalidNumber.forEach(order => {
+            cy.get('@order').type(order.number)
+            cy.get('@order').type(order.number)
+            cy.get('@email').type(order.email)
+            cy.get('@continue').click()
+          })
+        })
+      })
+
+      it.only("Then system displays the error message: 'Enter a valid e-mail'", () => {
+        cy.get(selectors.errorMessage)
+          .contains('Enter a valid order number')
+          .should('be.visible')
+
+        cy.location('pathname')
+          .should('eq', '/partner')
       })
     })
   })
